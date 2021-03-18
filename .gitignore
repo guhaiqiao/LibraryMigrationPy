@@ -1,0 +1,7 @@
+dependency.log
+__pycache__
+.ipynb_checkpoints
+.vscode
+nohup.out
+requirements.txt
+test.py
