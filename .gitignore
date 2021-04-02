@@ -1,7 +1,13 @@
-dependency.log
 __pycache__
 .ipynb_checkpoints
 .vscode
+
+dependency.log
 nohup.out
+repo.log
+
 requirements.txt
 test.py
+
+/data
+/repos

@@ -5,7 +5,7 @@ import pymongo
 import re
 from dependency import Dependency
 access_token = "06bf70084bea39f1c23cf2f0a9f89045f5c27d72"
-def getRequirements(namewithowner)->str:
+def getNowRequirementsFromGitHub(namewithowner)->str:
     g = Github(access_token)
     try:
         repo = g.get_repo(namewithowner)
@@ -23,17 +23,18 @@ def getRequirements(namewithowner)->str:
         return None
     return  dependencies
 
-MONGO_URL = "mongodb://127.0.0.1:27017"
-db = pymongo.MongoClient(MONGO_URL).migration_helper_py
-projects = list(db.ProjectwithRequirements.find({}, sort=[{"Stars Count", pymongo.DESCENDING}]))
-# projects = list(db.lioProject.find({}, sort=[{"Stars Count", pymongo.DESCENDING}]))
-print(len(projects))
-i = 0
-for project in projects:
-    name_with_owner = project['Name with Owner']
-    dependencies = getRequirements(name_with_owner)
-    db.lioProject.update_one({'Name with Owner': name_with_owner},{'$set':{'Dependencies': dependencies}})
-    i += 1
-    break
-    if i % 100 == 0:
-        print(i)
+def updateRequirementsFromGitHub():
+    MONGO_URL = "mongodb://127.0.0.1:27017"
+    db = pymongo.MongoClient(MONGO_URL).migration_helper_py
+    projects = list(db.ProjectwithRequirements.find({}, sort=[{"Stars Count", pymongo.DESCENDING}]))
+    # projects = list(db.lioProject.find({}, sort=[{"Stars Count", pymongo.DESCENDING}]))
+    print(len(projects))
+    i = 0
+    for project in projects:
+        name_with_owner = project['Name with Owner']
+        dependencies = getNowRequirementsFromGitHub(name_with_owner)
+        db.lioProject.update_one({'Name with Owner': name_with_owner},{'$set':{'Dependencies': dependencies}})
+        i += 1
+        break
+        if i % 100 == 0:
+            print(i)
