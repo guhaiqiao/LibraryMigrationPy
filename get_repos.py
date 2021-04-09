@@ -1,24 +1,28 @@
 import os
-import pymongo
-MONGO_URL = "mongodb://127.0.0.1:27017"
-db = pymongo.MongoClient(MONGO_URL).migration_helper_py
-projects = list(db.ProjectwithRequirements.find({}, sort=[{"Stars Count", pymongo.DESCENDING}]))
-print(len(projects))
-i = 0
+import numpy as np
+import pandas as pd
+from pathos.pools import ProcessPool
+from tqdm import tqdm
+import time
 
-def clone_repo(project):
-    name_with_owner = project['Name with Owner']
-    cmd = "cd repos && git clone https://github.com/{}.git".format(name_with_owner)
+projects = pd.read_csv('data/projects.csv')['Name with Owner']
+print(len(projects))
+
+
+def clone_repo(name_with_owner):
+    cmd = "cd repos && git clone https://github.com/{}.git".format(
+        name_with_owner)
     print("Starting to clone {}".format(name_with_owner))
-    print("Running command '{}'".format(cmd))
     os.system(cmd)
     print("Finshed cloning {}".format(name_with_owner))
-    print("#####################################")
     print("")
+
+# clone失败的仓库考虑重新clone
+
 
 def get_fail_repo(filename):
     with open(filename) as f:
         f.read
-# parallel(clone_repo, projects[0:5])
-for project in projects:
-    clone_repo(project)
+
+
+parallel(clone_repo, 96, projects)

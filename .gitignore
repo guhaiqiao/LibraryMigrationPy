@@ -9,5 +9,5 @@ repo.log
 requirements.txt
 test.py
 
-/data
+# /data
 /repos
