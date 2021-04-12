@@ -146,10 +146,10 @@ def get_dependency_change(project:str):
             df = df.append(data, ignore_index=True)
     return df
 
-repos = get_repos('repos')
-total_df = parallel(get_requirements_log, repos)
-total_df.to_excel('data/migration_changes.xlsx', index=False, encoding='UTF-8')
-total_df.query('type=="add" | type=="rem"').to_excel('data/migration_changes_without_verchanges.xlsx', index=False)
-cope_repos = np.array(list(cope_repos))
-np.savetxt('data/cope_repos.csv', cope_repos)
-print(total_df.head(5))
+# repos = get_repos('repos')
+# total_df = parallel(get_requirements_log, repos)
+# total_df.to_excel('data/migration_changes.xlsx', index=False, encoding='UTF-8')
+# total_df.query('type=="add" | type=="rem"').to_excel('data/migration_changes_without_verchanges.xlsx', index=False)
+# cope_repos = np.array(list(cope_repos))
+# np.savetxt('data/cope_repos.csv', cope_repos)
+# print(total_df.head(5))

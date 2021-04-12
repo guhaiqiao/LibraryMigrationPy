@@ -71,11 +71,15 @@ def get_single_repo_all_version_commit_from_git(repo):
     df = df.sort_values(by='date', ignore_index=True)
     return df
 
+def get_all_repo_all_version_commit(path):
+    repos = get_repos('repos')
+    # print(len(repos))
+    # df = get_single_repo_all_version_commit_from_git('ncbi-genome-download')
+    df = parallel(get_single_repo_all_version_commit_from_git, 96, repos)
+    df.to_excel('data/project_version_with_commit.xlsx', index=False)
+    print(df.head(5))
+    print(len(df))
 
-repos = get_repos('repos')
-# print(len(repos))
-# df = get_single_repo_all_version_commit_from_git('ncbi-genome-download')
-df = parallel(get_single_repo_all_version_commit_from_git, 96, repos)
-df.to_excel('data/project_version_with_commit.xlsx', index=False)
-print(df.head(5))
-print(len(df))
+    
+    
+    
