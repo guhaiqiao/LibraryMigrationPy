@@ -76,7 +76,7 @@ def get_all_repo_all_version_commit(path):
     # print(len(repos))
     # df = get_single_repo_all_version_commit_from_git('ncbi-genome-download')
     df = parallel(get_single_repo_all_version_commit_from_git, 96, repos)
-    df.to_excel('data/project_version_with_commit.xlsx', index=False)
+    df.to_excel('data/project_version_with_commit.xlsx', index=False, encoding='utf-8')
     print(df.head(5))
     print(len(df))
 

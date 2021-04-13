@@ -1,0 +1,6 @@
+requirements-parser
+openpyxl
+pandas
+pathos
+GitPython
+configparser
