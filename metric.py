@@ -5,15 +5,14 @@ from data_util import type_count
 import pkg_resources
 
 
-def get_all_add_lib(filename):
-    df = pd.read_csv(filename)
+def get_all_add_lib(df):
     libs = set(df['l1'].values)
     libs.remove(np.nan)
     return libs
 
 
-libs = get_all_add_lib('data/new_migration_changes_without_verchanges.csv')
-df = pd.read_csv('data/new_migration_changes_without_verchanges.csv')
+df = pd.read_csv('data/migration_changes_from_tag_diff_without_verchanges.csv')
+libs = get_all_add_lib(df)
 
 
 def h(message):
