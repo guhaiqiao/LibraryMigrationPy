@@ -3,6 +3,7 @@ import pymongo
 import pandas as pd
 from github import Github
 import numpy as np
+import os
 MONGO_URL = "mongodb://127.0.0.1:27017"
 
 # 项目
