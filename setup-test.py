@@ -19,23 +19,7 @@ if sys.argv[-1] == "publish":
     os.system("twine upload dist/*")
     sys.exit()
 
-here = os.path.abspath(os.path.dirname(__file__))
-about = {}
-with open(os.path.join(here, "music_dl", "__version__.py"), "r", encoding="utf-8") as f:
-    exec(f.read(), about)
-
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
-
 setuptools.setup(
-    name=about["__title__"],
-    version=about["__version__"],
-    description=about["__description__"],
-    author=about["__author__"],
-    author_email=about["__author_email__"],
-    url=about["__url__"],
-    license=about["__license__"],
-    long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
     test_suite="tests",

@@ -42,6 +42,11 @@ def download_file_from_github(owner:str, repo: str, branch='master', file='requi
     if r.status_code != 200:
         return False
     
+    save_path = '/'.join(f"{REPOS_DIR}/{owner}/{repo}/{branch}/{file}".split('/')[:-1])
+    
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+    
     with open(f"{REPOS_DIR}/{owner}/{repo}/{branch}/{file}", 'w+') as f:
         f.write(r.text)
         
