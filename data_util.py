@@ -7,8 +7,6 @@ import os
 MONGO_URL = "mongodb://127.0.0.1:27017"
 
 # 项目
-
-
 def select_projects_from_libraries_io() -> pd.DataFrame:
     """Select a project dataframe as our research subject"""
     db = pymongo.MongoClient(MONGO_URL)
