@@ -38,7 +38,7 @@ class Dependency:
     @staticmethod
     def parse_requirements(str):
         dependencies = []
-        raw_str = str
+        # raw_str = str
         
         if str == '' or '--hash' in str or str.find('git+') == 0:
             return dependencies
@@ -78,11 +78,7 @@ class Dependency:
 
     #TODO get the latest version satisfy the specifiers
     # def get_latest_version() 
-#     @staticmethod
-#     def parse_requirement(str):
-#         requirement = requirements.parse(str)
-#         project_name = requirement.name
-#         return Dependency(project_name, requirement.specs)
+
 
 if __name__ == '__main__':
     with open("requirements.txt") as f:

@@ -57,11 +57,17 @@ def get_star_num(repo):
         {"Name with Owner": {'$regex': f'.*{repo}$'}})
     return project['Stars Count']
 
+def get_repos(path):
+    for root, dirs, files in os.walk(path):
+        array = dirs
+        if array:
+            return array
 
-def type_count(type, filename):
-    count_df = pd.read_excel(filename)
+def type_count(type, count_df):
+    # count_df = pd.read_excel(filename)
     counts = dict(zip(*np.unique(count_df[type].values, return_counts=True)))
     return counts
+
 
 
 if __name__ == "__main__":

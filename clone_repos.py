@@ -1,9 +1,8 @@
 import os
 import numpy as np
 import pandas as pd
-from pathos.pools import ProcessPool
-from tqdm import tqdm
-import time
+from parallel import parallel
+
 
 projects = pd.read_csv('data/projects.csv')['Name with Owner']
 print(len(projects))

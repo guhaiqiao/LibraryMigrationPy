@@ -1,25 +1,24 @@
-import os
-import pandas as pd
-import numpy as np
-import subprocess
-import pkg_resources
 import datetime
+import os
 import re
-from parallel import parallel
+import subprocess
+
+import numpy as np
+import pandas as pd
+import pkg_resources
 import pymongo
 from dateutil.parser import parse as dateParser
 
-def get_repos(path):
-    for root, dirs, files in os.walk(path):
-        array = dirs
-        if array:
-            return array
+from data_util import get_repos
+from parallel import parallel
+
 
 def get_single_repo_all_version_published_time_from_libraries(repo):
     MONGO_URL = "mongodb://127.0.0.1:27017"
     db = pymongo.MongoClient(MONGO_URL).libraries
     df = pd.DataFrame(columns=['repoName', 'version', 'publishedTime'])
-    versions = list(db.versions.find({"Project Name": repo}, sort=[{"Published Timestamp", pymongo.DESCENDING}]))
+    versions = list(db.versions.find({"Project Name": repo}, sort=[
+                    {"Published Timestamp", pymongo.DESCENDING}]))
     for version in versions:
         data = {
             'repoName': repo,
@@ -29,12 +28,13 @@ def get_single_repo_all_version_published_time_from_libraries(repo):
         df = df.append(data, ignore_index=True)
     return df
 
-def get_single_repo_all_version_commit_from_git(repo):
+
+def get_single_repo_all_version_commit_from_git_tag(repo):
     df = pd.DataFrame(columns=['repoName', 'version', 'commit', 'date'])
     path = f'repos/{repo}'
     cmd = 'cd {} && git tag'.format(path)
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-    out, err = p.communicate()
+    out, _ = p.communicate()
     tags = sorted(out.decode().split('\n'))
 #     print(len(tags))
     for tag in tags:
@@ -71,15 +71,11 @@ def get_single_repo_all_version_commit_from_git(repo):
     df = df.sort_values(by='date', ignore_index=True)
     return df
 
-def get_all_repo_all_version_commit(path):
+
+def get_all_repo_all_version_commit():
     repos = get_repos('repos')
-    # print(len(repos))
     # df = get_single_repo_all_version_commit_from_git('ncbi-genome-download')
-    df = parallel(get_single_repo_all_version_commit_from_git, 96, repos)
+    df = parallel(get_single_repo_all_version_commit_from_git_tag, 96, repos)
     df.to_excel('data/project_version_with_commit.xlsx', index=False)
     print(df.head(5))
     print(len(df))
-
-    
-    
-    
