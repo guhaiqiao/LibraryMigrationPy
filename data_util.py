@@ -72,8 +72,5 @@ def type_count(type, count_df):
 
 if __name__ == "__main__":
     #     logging.basicConfig(level=logging.DEBUG)
-    #     select_libraries_from_libraries_io()
-    #     select_projects_from_libraries_io()
     #     print(select_libraries_from_libraries_io())
-    #     print(select_projects_from_libraries_io())
-    print(type_count('type', 'data/migration_changes_without_verchanges_filtered_by_stars.xlsx'))
+        print(select_projects_from_libraries_io())
