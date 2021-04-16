@@ -68,7 +68,7 @@ def get_single_repo_all_version_commit_from_git_tag(repo):
             'date': timestamp
         }
         df = df.append(data, ignore_index=True)
-    df = df.sort_values(by='date', ignore_index=True)
+    df = df.sort_values(by='date', ascending=False, ignore_index=True)
     return df
 
 

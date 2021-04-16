@@ -115,20 +115,6 @@ def get_depchg_from_git_log(project: str):
                 'v2': [';'.join(['' + spec[0] + spec[1] for spec in x._specs]) for x in r.rems if x.project_name == l][0]
             }
             df = df.append(data, ignore_index=True)
-        for add in r.adds:
-            if add.project_name in common_l or add.project_name is None:
-                continue
-            data = {
-                'repoName': project,
-                'commit': r.commit,
-                'date': r.date,
-                'type': 'add',
-                'l1': add.project_name,
-                'v1': ';'.join(['' + spec[0] + spec[1] for spec in add._specs]),
-                'l2': np.nan,
-                'v2': np.nan
-            }
-            df = df.append(data, ignore_index=True)
         for rem in r.rems:
             if rem.project_name in common_l or rem.project_name is None:
                 continue
@@ -141,6 +127,20 @@ def get_depchg_from_git_log(project: str):
                 'v1': np.nan,
                 'l2': rem.project_name,
                 'v2': ';'.join(['' + spec[0] + spec[1] for spec in rem._specs])
+            }
+            df = df.append(data, ignore_index=True)
+        for add in r.adds:
+            if add.project_name in common_l or add.project_name is None:
+                continue
+            data = {
+                'repoName': project,
+                'commit': r.commit,
+                'date': r.date,
+                'type': 'add',
+                'l1': add.project_name,
+                'v1': ';'.join(['' + spec[0] + spec[1] for spec in add._specs]),
+                'l2': np.nan,
+                'v2': np.nan
             }
             df = df.append(data, ignore_index=True)
     return df
@@ -200,7 +200,6 @@ def get_depchg_from_tag_diff(s):
             last_version = temp_version
             last_commit = df_repo[i][2]
     # print(now_version, last_version, now_commit, last_commit)
-
     # git diff tag1 tag2 requirements.txt
     df_dc = pd.DataFrame(columns=[
                          'repoName', 'version', 'commit', 'date', 'type', 'l1', 'v1', 'l2', 'v2', 'message'])
@@ -229,22 +228,6 @@ def get_depchg_from_tag_diff(s):
             'message': message
         }
         df_dc = df_dc.append(data, ignore_index=True)
-    for add in r.adds:
-        if add.project_name in common_l or add.project_name is None:
-            continue
-        data = {
-            'repoName': repo,
-            'version': version,
-            'commit': commit,
-            'date': date,
-            'type': 'add',
-            'l1': add.project_name,
-            'v1': ';'.join(['' + spec[0] + spec[1] for spec in add._specs]),
-            'l2': np.nan,
-            'v2': np.nan,
-            'message': message
-        }
-        df_dc = df_dc.append(data, ignore_index=True)
     for rem in r.rems:
         if rem.project_name in common_l or rem.project_name is None:
             continue
@@ -261,12 +244,28 @@ def get_depchg_from_tag_diff(s):
             'message': message
         }
         df_dc = df_dc.append(data, ignore_index=True)
+    for add in r.adds:
+        if add.project_name in common_l or add.project_name is None:
+            continue
+        data = {
+            'repoName': repo,
+            'version': version,
+            'commit': commit,
+            'date': date,
+            'type': 'add',
+            'l1': add.project_name,
+            'v1': ';'.join(['' + spec[0] + spec[1] for spec in add._specs]),
+            'l2': np.nan,
+            'v2': np.nan,
+            'message': message
+        }
+        df_dc = df_dc.append(data, ignore_index=True)
     return df_dc
 
 
 def multi_get_depchg_from_tag_diff(write=False):
     df_tdc = parallel(get_depchg_from_tag_diff, 96, df.values)
-    df_tdc.head(10)
+    print(df_tdc.head(10))
     if write:
         df_tdc.to_csv('data/migration_changes_from_tag_diff.csv', index=False)
 
