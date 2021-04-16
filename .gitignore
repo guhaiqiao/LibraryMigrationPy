@@ -12,8 +12,10 @@ playground.mongodb
 test.py
 
 # repos (too large for github
-repos/
-repos_full/
+repos_requirements_minimal/
+repos_requirements/
+repos_50/
 tests/
 
-
+# config
+config.ini
