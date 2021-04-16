@@ -7,7 +7,7 @@ import os
 MONGO_URL = "mongodb://127.0.0.1:27017"
 
 # 项目
-def select_projects_from_libraries_io() -> pd.DataFrame:
+def select_projects_from_libraries_io(star_num) -> pd.DataFrame:
     """Select a project dataframe as our research subject"""
     db = pymongo.MongoClient(MONGO_URL)
 
@@ -15,17 +15,17 @@ def select_projects_from_libraries_io() -> pd.DataFrame:
         "Host Type": "GitHub",
         "Fork": "false",
         "Language": "Python",
-        "Stars Count": {"$gt": 10},
+        "Stars Count": {"$gt": star_num},
     })))
 
     projects = projects.drop(columns=['_id', 'Description', 'Issues enabled', 'Wiki enabled', 'Pages enabled', 'Forks Count', 'Mirror URL',
                                       'Default branch', 'Watchers Count', 'UUID', 'Fork Source Name with Owner', 'SCM type', 'Pull requests enabled', 'Logo URL'])
     print(projects.head(5))
-    print(list(projects))
-    db.migration_helper_py.lioProject.insert_many(
+    # print(len(projects))
+    db.migration_helper_py.lioProjectNew.insert_many(
         projects.to_dict(orient='records'))
     logging.debug(
-        f"{len(projects)} non-fork GitHub Python projects with stars > 10")
+        f"{len(projects)} non-fork GitHub Python projects with stars > {star_num}")
     return projects
 
 
@@ -72,4 +72,4 @@ def type_count(type, count_df):
 if __name__ == "__main__":
     #     logging.basicConfig(level=logging.DEBUG)
     #     print(select_libraries_from_libraries_io())
-        print(select_projects_from_libraries_io())
+    select_projects_from_libraries_io(50)
