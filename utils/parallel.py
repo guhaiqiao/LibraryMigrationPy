@@ -1,4 +1,5 @@
-# @author: hehao98
+# Run func(arg) concurrently (return pd.DataFrame or None)
+# hehao98 <heh@pku.edu.cn> - Unknown
 
 from pathos.pools import ProcessPool
 from tqdm import tqdm
@@ -6,7 +7,6 @@ import time
 import pandas as pd
 
 # 并行框架
-
 def parallel(func, core_num, *args, progress_bar=tqdm, return_df=True):
     pool = ProcessPool(core_num)
     try:

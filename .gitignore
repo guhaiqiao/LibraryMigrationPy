@@ -4,12 +4,16 @@ __pycache__
 .vscode
 .idea
 
+# ghq ignores
 dependency.log
 nohup.out
 repo.log
-
+playground.mongodb
 test.py
 
-# /data
+# repos (too large for github
 repos/
-playground.mongodb
+repos_full/
+tests/
+
+
