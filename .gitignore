@@ -16,3 +16,8 @@ playground.mongodb
 问题.ipynb
 .eggs
 setup.csv
+cache/
+possible_rules/
+possible_rules_MC/
+related_commit
+pygit.py
