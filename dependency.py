@@ -2,6 +2,7 @@ import re
 import pkg_resources
 from typing import List
 import requirements
+import pymongo
 '''
 处理依赖版本信息
 '''
@@ -17,6 +18,7 @@ class Dependency:
         for specifier in self._specs:
             self.specs.append(
                 (specifier[0], pkg_resources.parse_version(specifier[1])))
+        self.spec = ';'.join(['' + spec[0] + spec[1] for spec in self._specs])
 
     def __str__(self):
         return f"{self.project_name} {self._specs} {self.specs}"
@@ -79,7 +81,24 @@ class Dependency:
     #TODO get the latest version satisfy the specifiers
     # def get_latest_version() 
 
-
+def get_dependency_from_libraries_io(name_with_owner, tag):
+    MONGO_URL = "mongodb://127.0.0.1:27017"
+    db = pymongo.MongoClient(MONGO_URL)
+    project = name_with_owner.split('/')[1]
+    results = list(db.libraries.dependencies.find({"Project Name": project, "Version Number": tag}))
+    deps = []
+    for r in results:
+        dep_name = r["Dependency Name"]
+        dep_requirement = r["Dependency Requirements"]
+        if dep_requirement != '*':
+            dep = dep_name + ' ' + dep_requirement
+        else:
+            dep = dep_name
+        d = Dependency.parse_requirements(dep)[0]
+        # print(d.project_name, d.spec)
+        deps.append(d)
+    return deps
+    
 if __name__ == '__main__':
     with open("requirements.txt") as f:
         content = f.read()
