@@ -8,15 +8,16 @@ import warnings
 import numpy as np
 import pandas as pd
 import pkg_resources
+from git import repo
 
+from data_util import get_repos
 from dependency import Dependency
 from parallel import parallel
-from data_util import get_repos
 
 warnings.filterwarnings("ignore")
 
 
-# 根据git log -p requirements.txt构造时间顺序的依赖变化，这个逻辑不太对，已经不用了
+# 根据git log -p requirements.txt构造时间顺序的依赖变化
 
 cope_repos = set()
 
@@ -29,49 +30,69 @@ class Diff:
         self.commit = ''
         self.adds = []
         self.rems = []
+        self.parent_commits = []
+        self.messages = []
+        self.commit_message = None
 
-    def analyse(self):
+    def analyse(self, parse=False):
+        flag = False
         for line in self.text:
             if line.find('commit') == 0:
                 self.commit = line[7:]
+                continue
 
             if line.find('Date:') == 0:
                 time_str = line[5:].strip()
-                self.date = time_str
-#                 self.date = datetime.datetime.strptime(time_str, '%a %b %d %H:%M:%S %Y %z')
-
-            if line.find('--- ') == 0:
+                self.date = str(datetime.datetime.strptime(
+                    time_str, '%a %b %d %H:%M:%S %Y %z').astimezone(tz=None))
+                flag = True
                 continue
 
-            if line.find('+++ ') == 0:
+            if line.find('diff') == 0:
+                flag = False
+                self.commit_message = '\n'.join(self.messages)
                 continue
 
-            if line.find('+') == 0:
-                if line[1:].find('-r') == 0:
-                    cope_repos.add(self.repo)
-                    continue
-                add = Dependency.parse_requirements(line[1:])
-                if add:
-                    self.adds.append(add[0])
+            if flag and line.strip() != '':
+                self.messages.append(line.strip())
 
-            if line.find('-') == 0:
-                if line[1:].find('-r') == 0:
-                    cope_repos.add(self.repo)
+            if parse:
+                if line.find('--- ') == 0:
                     continue
-                rem = Dependency.parse_requirements(line[1:])
-                if rem:
-                    self.rems.append(rem[0])
+
+                if line.find('+++ ') == 0:
+                    continue
+
+                if line.find('+') == 0:
+                    if line[1:].find('-r') == 0:
+                        cope_repos.add(self.repo)
+                        continue
+                    add = Dependency.parse_requirements(line[1:])
+                    if add:
+                        self.adds.append(add[0])
+
+                if line.find('-') == 0:
+                    if line[1:].find('-r') == 0:
+                        cope_repos.add(self.repo)
+                        continue
+                    rem = Dependency.parse_requirements(line[1:])
+                    if rem:
+                        self.rems.append(rem[0])
 
 
 class Log:
     def __init__(self, repo, log):
         self.repo = repo
-        self.log = log.decode().split('\n')
+        self.log = log
         self.diffs = []
         self.results = []
 
     def split_log(self):
         start = -1
+        try:
+            self.log = self.log.decode().split('\n')
+        except:
+            return
         for i in range(0, len(self.log)):
             value = self.log[i].find('commit')
             if value == 0:
@@ -84,75 +105,86 @@ class Log:
         new_start = len(self.log)
         self.diffs.append(self.log[start:new_start])
 
-    def analyse(self):
+    def analyse(self, parse=False):
         self.split_log()
         for diff in self.diffs:
             d = Diff(self.repo, diff)
-            d.analyse()
+            d.analyse(parse)
             self.results.append(d)
+        self.results.sort(key=lambda d: d.date, reverse=False)
         return self.results
 
 
-def get_depchg_from_git_log(project: str):
-    df = pd.DataFrame(columns=['repoName', 'commit',
+def get_depchg_from_git_log_requirements(s):
+    project = s[0]
+    df = pd.DataFrame(columns=['Name with Owner', 'commit',
                                'date', 'type', 'l1', 'v1', 'l2', 'v2'])
-    cmd = 'cd repos/{} && git log -p requirements.txt  '.format(project)
+
+    REPO_DIR = '/data/hrz/LibraryMigrationPy/repos_50/{}/master'
+    cmd = 'cd {} && git log -p requirements.txt  '.format(
+        REPO_DIR.format(project))
     p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
     out, _ = p.communicate()
     l = Log(project, out)
-    for r in l.analyse():
+    for r in l.analyse(parse=True):
         common_l = set([x.project_name for x in r.adds]) & set(
             [x.project_name for x in r.rems])
         for l in common_l:
             data = {
-                'repoName': project,
+                'Name with Owner': project,
                 'commit': r.commit,
                 'date': r.date,
                 'type': 'verchange',
                 'l1': l,
-                'v1': [';'.join(['' + spec[0] + spec[1] for spec in x._specs]) for x in r.adds if x.project_name == l][0],
+                'v1': [x.spec for x in r.adds if x.project_name == l][0],
                 'l2': l,
-                'v2': [';'.join(['' + spec[0] + spec[1] for spec in x._specs]) for x in r.rems if x.project_name == l][0]
+                'v2': [x.spec for x in r.rems if x.project_name == l][0],
+                'message': r.commit_message
             }
             df = df.append(data, ignore_index=True)
         for rem in r.rems:
             if rem.project_name in common_l or rem.project_name is None:
                 continue
             data = {
-                'repoName': str(project),
+                'Name with Owner': project,
                 'commit': r.commit,
                 'date': r.date,
                 'type': 'rem',
                 'l1': np.nan,
                 'v1': np.nan,
                 'l2': rem.project_name,
-                'v2': ';'.join(['' + spec[0] + spec[1] for spec in rem._specs])
+                'v2': rem.spec,
+                'message': r.commit_message
             }
             df = df.append(data, ignore_index=True)
         for add in r.adds:
             if add.project_name in common_l or add.project_name is None:
                 continue
             data = {
-                'repoName': project,
+                'Name with Owner': project,
                 'commit': r.commit,
                 'date': r.date,
                 'type': 'add',
                 'l1': add.project_name,
-                'v1': ';'.join(['' + spec[0] + spec[1] for spec in add._specs]),
+                'v1': add.spec,
                 'l2': np.nan,
-                'v2': np.nan
+                'v2': np.nan,
+                'message': r.commit_message
             }
             df = df.append(data, ignore_index=True)
     return df
 
 
-def multi_get_depchg_from_git_log(write=False):
-    repos = get_repos('repos')
-    df_from_git_log = parallel(get_depchg_from_git_log, repos)
+def multi_get_depchg_from_git_log_requirements(filename, write=False):
+    df_project = pd.read_csv(filename).values
+    # df_requirements = df_project[df_project['requirements_exists']].values
+    df_from_git_log = parallel(
+        get_depchg_from_git_log_requirements, 96, df_project)
+    print(len(df_from_git_log))
     print(df_from_git_log.head(10))
     if write:
         df_from_git_log.to_csv(
-            'data/migration_changes_from_git_log.csv', index=False, encoding='UTF-8')
+            'data/migration_changes_from_requirements_git_log.csv', index=False, encoding='UTF-8')
 
 
 def get_commit_message_from_clone(repo, commit):
@@ -290,4 +322,6 @@ def filter_verchg_from_migration_change(filename):
 
 if __name__ == '__main__':
     # get_commit_message('keras', 'b5cb82c689eac0e50522be9d2f55093dadfba24c')
-    multi_get_depchg_from_tag_diff()
+    # multi_get_depchg_from_tag_diff()
+    multi_get_depchg_from_git_log_requirements('data/projects_with_requirements.csv', write=True)
+    filter_verchg_from_migration_change('data/migration_changes_from_requirements_git_log.csv')
