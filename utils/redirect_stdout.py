@@ -3,7 +3,7 @@ import sys
 
 # ref: https://codereview.stackexchange.com/questions/25417/
 # to install silently
-class NoStdStreams(object):
+class StdoutToFile:
     def __init__(self,stdout = None, stderr = None, file = ''):
         if not file:
             self.devnull = open(os.devnull,'w')
@@ -22,3 +22,34 @@ class NoStdStreams(object):
         sys.stdout = self.old_stdout
         sys.stderr = self.old_stderr
         self.devnull.close()
+
+
+# ref: https://stackoverflow.com/questions/1218933/
+# >>> with RedirectedStdout() as out:
+# >>>     print('asdf')
+# >>>     s = str(out)
+# >>>     print('bsdf')
+# >>> print(s, out)
+# 'asdf\n' 'asdf\nbsdf\n'
+
+import sys
+from io import StringIO
+
+class StdoutToString:
+    def __init__(self):
+        self._stdout = None
+        self._stderr = None
+        self._string_io = None
+
+    def __enter__(self):
+        self._stdout = sys.stdout
+        self._stderr = sys.stderr
+        sys.stdout = sys.stderr = self._string_io = StringIO()
+        return self
+
+    def __exit__(self, type, value, traceback):
+        sys.stdout = self._stdout
+        sys.stderr = self._stderr
+
+    def __str__(self):
+        return self._string_io.getvalue()
