@@ -29,6 +29,44 @@ def get_single_repo_all_version_published_time_from_libraries(repo):
     return df
 
 
+MONGO_URL = "mongodb://127.0.0.1:27017"
+db = pymongo.MongoClient(MONGO_URL)
+
+
+def get_tag_from_libraries_io(name_with_owner):
+    repo = name_with_owner.split('/')[1]
+    version_df = pd.DataFrame(
+        columns=['repoName', 'version', 'commit', 'date'])
+    results = list(db.libraries.tags.find({"Repository Name with Owner": name_with_owner}, sort=[
+                   {"Tag Published Timestamp", pymongo.DESCENDING}]))
+    for r in results:
+        tag = str(r['Tag Name'])
+        commit = r['Tag git sha']
+        timestamp = str(datetime.datetime.strptime(
+            r['Tag Published Timestamp'], '%Y-%m-%d %H:%M:%S %Z').astimezone(tz=None))
+        try:
+            version = pkg_resources.parse_version(tag)
+        except:
+            continue
+
+        if version.release is None or version.is_prerelease:
+            continue
+
+        version_release = [str(x) for x in (version.release + (0, ))[:3]]
+        version_number = '.'.join(version_release)
+
+        data = {
+            'repoName': repo,
+            'version': version_number,
+            'commit': commit,
+            'date': timestamp
+        }
+        version_df = version_df.append(data, ignore_index=True)
+    version_df = version_df.sort_values(
+        by='date', ascending=False, ignore_index=True)
+    return version_df
+
+
 def get_single_repo_all_version_commit_from_git_tag(repo):
     df = pd.DataFrame(columns=['repoName', 'version', 'commit', 'date'])
     path = f'repos/{repo}'
@@ -76,6 +114,7 @@ def get_all_repo_all_version_commit():
     repos = get_repos('repos')
     # df = get_single_repo_all_version_commit_from_git('ncbi-genome-download')
     df = parallel(get_single_repo_all_version_commit_from_git_tag, 96, repos)
-    df.to_excel('data/project_version_with_commit.xlsx', index=False, encoding='utf-8')
+    df.to_excel('data/project_version_with_commit.xlsx',
+                index=False, encoding='utf-8')
     print(df.head(5))
     print(len(df))

@@ -1,0 +1,21 @@
+requests, urllib3, 4
+requests, aiohttp, 1
+requests, pygithub, 1
+webhook, grequests, 1
+
+requests, httpx(res)
+requests, boto(res)
+requests, netaddr(res)
+requests, google-api-core(res)
+requests, b2-sdk(res)
+
+urllib3, requests, 2
+
+urllib3, netaddr(res)
+urllib3, gdata-python3(res)
+
+httplib2, requests, 5
+httplib2, urllib3, 2
+
+
+

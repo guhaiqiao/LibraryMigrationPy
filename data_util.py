@@ -52,8 +52,8 @@ def select_libraries_from_libraries_io() -> pd.DataFrame:
 
 def get_star_num(repo):
     db = pymongo.MongoClient(MONGO_URL).migration_helper_py
-    project = db.ProjectwithRequirements.find_one(
-        {"Name with Owner": {'$regex': f'.*{repo}$'}})
+    project = db.lioProjectNew.find_one(
+        {"Name with Owner": repo})
     return project['Stars Count']
 
 def get_repos(path):

@@ -1,0 +1,110 @@
+Name with Owner,commit,deps
+pallets/flask,6979265fa643ed982d062f38d386c37bbbef0d9b,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,0c7cbe2d1186f53efcd0da0589a2eaf0382e4d39,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,eea31f29a50eeb30ec3c314bb2a6de4c931095c1,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,024f0d384cf5bb65c76ac59f8ddce464b2dc2ca1,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,524fd0bc8cec7bfe8167c9c98cb5511b01a0f4c6,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,a0a61acdecd925cf2a1ffe5fb7acd27c1695f1d8,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,33d9f9fa08e5a007d7ff1bb1f92c8d593b3c380a,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,ffc68840f821fb0a4c41a7b2b4eaad6d71f539b7,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,1351d0a56580df36872b466eb245e7634c20dab5,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,24498afed5075583ecd5667b105b4a315a25051e,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,ca278a8694f42e569a6d9f7d71c669465019bf06,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,33379155f613dbdb4fe6d0918a5038a989fc18bf,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,8590d65a57ad57c99a82fdf4e1c57921d7e1bdcd,"['Werkzeug>=0.15', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,025589ee766249652e2e097da05808fe64911ddc,"['Werkzeug>=0.14', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,de01dfb70206f8dbb55724b7abfc515ead3ca283,"['Werkzeug>=0.14', 'Jinja2>=2.10.1', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,2611632c69d46b03cb5321a43103c3fee8705aca,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,3fd7abec3c8c4a32da9579d0824b10d5ba0add83,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,78b56dbf2cc5834eb66ae7634241eaf9da99b04b,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,a22d143f96ee3c7d14887e871b34a84683835a3f,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,fafb827a461df2c32f752d3ac2e3cdb83fb3deaf,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,732c5b0509a8138a504d48a8c5e0be493f1ed603,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,9d0b163362027e9c5c79968a39ce532dd5917f8b,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,5c8110de25f08bf20e9fda6611403dc5c59ec849,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,10a77a54309876a6aba2e3303d291498c0a9318c,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,49a38ed9995c5fa8fd07fde732845cbc08e890b0,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,310fbfcf64f40f237068fddbbbe45315f9935eca,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,9bf5c3b3a3bdc3f2f2dcca2b5747378470d0d354,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,af32ea0b9449a2f4aeb858f546cdfea7254342fb,"['Werkzeug>=0.14', 'Jinja2>=2.10', 'itsdangerous>=0.24', 'click>=5.1']"
+pallets/flask,60eecb547d8af9916c55163c7356999ca2d5ffb9,"['Werkzeug>=0.9', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=4.0']"
+pallets/flask,392989aaa7f6f5e90a623845cb859451b207ca93,"['Werkzeug>=0.9', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=4.0']"
+pallets/flask,491d331e6e0a7915c9e6d9b3287688ac7a3f56ca,"['Werkzeug>=0.9', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=4.0']"
+pallets/flask,715a9a3e7bd65421c36428ba9d4a1ee06b98bbc1,"['Werkzeug>=0.9', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=4.0']"
+pallets/flask,16396248b829c61806ba65840aa70e0a3d8b3c8c,"['Werkzeug>=0.9', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=4.0']"
+pallets/flask,399ac3c54fff4cb9d5c4673ce98e409a562b5745,"['Werkzeug>=0.9', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=4.0']"
+pallets/flask,3c7625e8c0243fc7777031253e081b7140f57604,"['Werkzeug>=0.9', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=4.0']"
+pallets/flask,65b22926f7673b419a9da82f3213d7243c968af1,"['Werkzeug>=0.9', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=4.0']"
+pallets/flask,d05862574f1ea19d99526ca893be2888389eab1c,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=4.0']"
+pallets/flask,bb0e755c808a8541192982ba7b86308b68ff7657,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=2.0']"
+pallets/flask,7e8d7d43c8852f1567a93838ae7983bf519ddcb1,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=2.0']"
+pallets/flask,567fff9d0d20650743abd8fe17d3dc9d98fa19dc,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=2.0']"
+pallets/flask,7368a164c7506046a4a0b0ce2113c2aaa7800087,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=2.0']"
+pallets/flask,85b20f8d491ae02278e720c961024e837cc64b0e,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=2.0']"
+pallets/flask,eb2a4521ff838ceb291f6f30f41ea70e3f552032,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=2.0']"
+pallets/flask,ddf0dfa8952852fb5365a794c4fe998a8ff6ba8f,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,4fca38c078142744922a8c763bc1468e680a830d,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=2.0']"
+pallets/flask,b93ab41ed12c3dd0c37fb7a85f1aa93966b46d77,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=2.0']"
+pallets/flask,3550b26071e0f392ad67ece2ea5057a292bdc528,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=2.0']"
+pallets/flask,f6d25bbc4f95112e9f5f85096d12a61ed43b38b8,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=2.0']"
+pallets/flask,2639a23b8875abb6c1dd2889728920cce5d09632,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=0.6']"
+pallets/flask,3569fc24415f8bac7b269ec041bd1f6bc23038ce,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click>=0.6']"
+pallets/flask,0ac492a0acda40208e6c613644fe9e779dc3d937,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21', 'click']"
+pallets/flask,7503bde2235c28853d4c4e53087090d8c42041aa,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,977e7660accc6b31bdd002b74f0a29b2846c84ba,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,d94b1bec24f47e5997787f5ee762d8b2566d81b4,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,298334fffc8288b5a9a45ef4150e3c4292e45318,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,89731d86b6d2d6c3295f79ca3a504fc6c2762634,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,2713ea98cb0fc22952ba6ddf88209da1a2efa270,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,5886925ff34db3d9e913a4bc44891876a7fe65d5,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,41171d11ae37c4dfae79f17e1477b7bf8bdc034a,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,ac187bded7339dbf88baa2c6c7d8adddef657cac,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,3b9574fec988fca790ffe78b64ef30b22dd3386a,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,bb2e20f53fd66981190658a58e206a3f8aa4f3e3,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.21']"
+pallets/flask,a0801719f8f24a0e3192eca203bbd341c4e557ec,"['Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.17']"
+pallets/flask,506db0eab2bf9e514177d8b46e2708f10601cf36,"['six>=1.3.0', 'Werkzeug>=0.7', 'Jinja2>=2.4', 'itsdangerous>=0.17']"
+pallets/flask,8494574fdfa748a299e39339327327d09dbaf16a,
+pallets/flask,1b753cb1b1764de5bf3afe1f96032362208febc6,
+pallets/flask,40fad2ece80e8bf6784e137028645fa66a3cd9c2,
+pallets/flask,1358fd9f3e0d1cdfa2a948a1176b276188ea959e,
+pallets/flask,fe85970665ea3a38f9c6a8ef4756ff3a913850b6,
+pallets/flask,3f82d1b68ea6f5bf2970c2df8ff5cf991439a9bf,
+pallets/flask,b87919348104774e9c959fc00976966e38161129,
+pallets/flask,bea5858411b9138e3bf797b87ac6b0f5491c1897,
+pallets/flask,19def9606ac50bd308ea283e283cbcf62498d6c7,
+pallets/flask,b31f2d9a640c154e41de6d9631e95cf105e96e1f,
+pallets/flask,35383ee83c568ce642ffef6733d8b91ebd206185,
+pallets/flask,8216e036e96594a4932d1f6a3569fcf39fe3c2bd,
+pallets/flask,3de8de1985f46297243eab340abd6c45c82bb9c4,
+pallets/flask,766522cb587850f643f3bb6cb011735ae6a98510,
+pallets/flask,3765cc2e9e6ea2d227f898d5b176aa50680e491c,
+pallets/flask,d5e10e4685f54dde5ffc27c4f55a19fb23f7a536,
+pallets/flask,04b90f5ad47d04bace76c18f634d54b0da4b91ce,
+pallets/flask,d4d75701bc1ea02a0e9b7e3e0d1aee777bd59116,
+pallets/flask,0c75be1172000ad4d0b60920ef5a6fb78880a7d2,
+pallets/flask,d4d6cc8401b94ab7c92b70ca5e5b21d22636dd5d,
+pallets/flask,5f7f3b17dfe2fbeecf82d5745c497b3ea94bf50a,
+pallets/flask,d5cd4f8d59a4a8e5860c8813b3f5d3f3631e9183,
+pallets/flask,4cb6eea8f1e1edc707874f72cbca43a0f698ec7d,
+pallets/flask,515e946b020584db7f236eb8ad139f9f32de305f,
+pallets/flask,510823c1592abe4c57e051e9d21bd134ab7f07a7,
+pallets/flask,b64fa73467424b8e6c4efa565d4d5bc2ae414ab7,
+pallets/flask,fb1482d3bb1b95803d25247479eb8ca8317a3219,
+pallets/flask,874079bffed0f02235f55e4a512822194ac2449a,
+pallets/flask,f52f4fd31b9858f8b42be3fbb2818440e58978b4,
+pallets/flask,16b101edb6c10a984b0f2960feeeca5a458845a1,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,3f7ab1797730b8d07497744878d109baa9b235a5,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,4f8ee8f12946b224e5003405be99aa4e454bdeee,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,528ae04be024ea27881f4c45e23590c011a8ea66,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,707b30749daf407c07b5b265bd892564576ad80a,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,4ca1d0a2ed7639d3f1d2e466a777f7e6b0e8aa0a,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,ce6e4cbd73d57cb8c1bba85c46490f71061f865f,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,07581b2404924fe1833f596cfa09caf69868ad5b,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,b0ab127015186e1a2918221ffad8d79ca346faf5,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,3c821a0fa45082bcec73dfb08662fb1de5263c48,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,9fbf9a062c11904b5022a5aa7941449e31340c32,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,0bb8b4f9a1c61fcf473e5ca7a10cc3ed4f30766f,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,959b5df00431c436474c5abca304e631c0de7721,"['Werkzeug>=0.6.1', 'Jinja2>=2.4']"
+pallets/flask,574e81f9c8bbdc41958e1e7a7613633b091101f8,[]
+pallets/flask,1fff3e598126a084348ec2c112fdd3bc6b9a1ee0,[]
+pallets/flask,b15ad394279fc3b7f998fa56857f334a7c0156f6,"['Werkzeug==dev', 'Jinja2==dev']"
