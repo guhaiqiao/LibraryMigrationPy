@@ -3,4 +3,7 @@ openpyxl
 pandas
 pathos
 GitPython
-configparser
+pymongo
+PyGithub
+tqdm
+matplotlib
